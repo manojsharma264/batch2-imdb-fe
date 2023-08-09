@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  background-color: #000;
+  
+}
+
+.ad-container{
+  background-color: #fff;
+  width: 70vw;
+  margin: 0 auto;
+  height: 200px;
+  margin-top: 20px;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+

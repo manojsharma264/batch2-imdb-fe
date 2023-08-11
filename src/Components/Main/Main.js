@@ -5,20 +5,34 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 export default function Main() {
   const [moviearr, setMovieArr] = useState([]);
+  const [moviearr2, setMovieArr2] = useState([]);
+  const [i, setI] = useState(0);
   const [currentMovie, setCurrentMovie] = useState({});
 
   const handleForward = () => {
     if (moviearr.indexOf(currentMovie) == moviearr.length - 1) {
       setCurrentMovie(moviearr[0]);
+      setI(0);
+    } else if (moviearr.indexOf(currentMovie) == moviearr.length - 2) {
+      setCurrentMovie(moviearr[moviearr.indexOf(currentMovie) + 1]);
+      setI(0);
     } else {
       setCurrentMovie(moviearr[moviearr.indexOf(currentMovie) + 1]);
+      setI(moviearr.indexOf(currentMovie) + 2);
     }
   };
   const handleBackward = () => {
     if (moviearr.indexOf(currentMovie) == 0) {
       setCurrentMovie(moviearr[moviearr.length - 1]);
+      setI(0);
+    } else if (moviearr.indexOf(currentMovie) == 1) {
+      setCurrentMovie(moviearr[moviearr.length - 1]);
+      setI(0);
     } else {
       setCurrentMovie(moviearr[moviearr.indexOf(currentMovie) - 1]);
+      console.log(moviearr);
+
+      setI(moviearr.indexOf(currentMovie) - 2);
     }
   };
 
@@ -34,6 +48,7 @@ export default function Main() {
       }
     );
     setMovieArr(res.data.results);
+    setMovieArr2(res.data.results);
     setCurrentMovie(res.data.results[0]);
   };
   useEffect(() => {
@@ -62,7 +77,8 @@ export default function Main() {
       <div className="vertical-carousel">
         <h2>Up Next</h2>
 
-        {moviearr
+        {moviearr2
+          .slice(i, moviearr2.length - 1)
           .filter((elem, index) => index < 3)
           .map((elem) => {
             return (

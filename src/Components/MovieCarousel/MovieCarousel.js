@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./moviecarousel.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -20,36 +20,45 @@ const style = {
   textAlign: "center",
 };
 export default function MovieCarousel(props) {
+  const cardelem = useRef();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const [movies, setMovies] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleBackward = () => {
-    document.getElementById("cards").scrollBy({
+    // document.getElementById("cards").scrollBy({
+    //   top: 100,
+    //   left: -1000,
+    //   behavior: "smooth",
+    // });
+    cardelem.current.scrollBy({
       top: 100,
       left: -1000,
       behavior: "smooth",
     });
   };
   const handleForward = () => {
-    document.getElementById("cards").scrollBy({
+    // document.getElementById("cards").scrollBy({
+    //   top: 100,
+    //   left: 1000,
+    //   behavior: "smooth",
+    // });
+    console.log(cardelem);
+    cardelem.current.scrollBy({
       top: 100,
       left: 1000,
       behavior: "smooth",
     });
   };
   const getMovies = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-      {
-        headers: {
-          Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2JmMzY2NDAwNmY2YzBhMWY0MWNkNWRmYzdlNTgxYSIsInN1YiI6IjY0ZDNhOGYwZGQ5MjZhMDFlYTlkMzhmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.F2M3pNrTSw2w6k8Idhwnd2Chnoojm97Or3WcLck5EkA", //the token is a variable which holds the token
-        },
-      }
-    );
+    const res = await axios.get(props.api, {
+      headers: {
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2JmMzY2NDAwNmY2YzBhMWY0MWNkNWRmYzdlNTgxYSIsInN1YiI6IjY0ZDNhOGYwZGQ5MjZhMDFlYTlkMzhmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.F2M3pNrTSw2w6k8Idhwnd2Chnoojm97Or3WcLck5EkA", //the token is a variable which holds the token
+      },
+    });
     setMovies(res.data.results);
   };
 
@@ -67,7 +76,7 @@ export default function MovieCarousel(props) {
         <button className="moviecar-nav-right" onClick={handleForward}>
           {">"}
         </button>
-        <div className="cards" id="cards">
+        <div className="cards" ref={cardelem}>
           {movies?.map((elem, index) => {
             return (
               <>

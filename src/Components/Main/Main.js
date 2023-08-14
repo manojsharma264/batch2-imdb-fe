@@ -6,7 +6,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 export default function Main() {
   const [moviearr, setMovieArr] = useState([]);
   const [moviearr2, setMovieArr2] = useState([]);
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(1);
   const [currentMovie, setCurrentMovie] = useState({});
 
   const handleForward = () => {
@@ -24,9 +24,9 @@ export default function Main() {
   const handleBackward = () => {
     if (moviearr.indexOf(currentMovie) == 0) {
       setCurrentMovie(moviearr[moviearr.length - 1]);
-      setI(0);
+      setI(i - 1);
     } else if (moviearr.indexOf(currentMovie) == 1) {
-      setCurrentMovie(moviearr[moviearr.length - 1]);
+      setCurrentMovie(moviearr[0]);
       setI(0);
     } else {
       setCurrentMovie(moviearr[moviearr.indexOf(currentMovie) - 1]);

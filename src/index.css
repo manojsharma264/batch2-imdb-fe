@@ -17,4 +17,14 @@ a{
   color: #fff;
 }
 
-
+.unauth{
+  text-align: center;
+  color: #fff;
+}
+.signin{
+  color: dodgerblue;
+  background-color: rgb(25, 17, 17);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}

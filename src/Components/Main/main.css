@@ -40,8 +40,10 @@
     left: 20px;
     bottom: 50%;
     font-size: 40px;
-    border: none;
-    background: none;
+    border: 1px solid #000;
+    background: #000000a3;
+    height: 60px;
+    width: 60px;
     cursor: pointer;
 }
 .car-nav-right{
@@ -50,8 +52,10 @@
     right: 5%;
     bottom: 50%;
     font-size: 40px;
-    border: none;
-    background: none;
+    border: 1px solid #000;
+    background: #000000a3;
+    height: 60px;
+    width: 60px;
     cursor: pointer;
 
 }
